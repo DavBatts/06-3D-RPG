@@ -1,3 +1,75 @@
-[gd_scene format=2]
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Terrain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Target/Target.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/RayCast.gd" type="Script" id=4]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 100, 0.5, 100 )
+
+[sub_resource type="Skin" id=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 50, 0.25, 50 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 0.984314, 0.0117647, 0.0117647, 1 )
+emission_energy = 4.0
+emission_operator = 0
+emission_on_uv2 = false
+transmission_enabled = true
+transmission = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 0.5
+height = 1.0
 
 [node name="Game" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 3 )
+
+[node name="island" parent="Ground" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 17.0952, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.3309, 8.85346 )
+
+[node name="Pivot" type="Position3D" parent="Player"]
+
+[node name="Camera" type="Camera" parent="Player/Pivot"]
+transform = Transform( -1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 0, 5, -8 )
+
+[node name="RayCast" type="RayCast" parent="Player/Pivot"]
+enabled = true
+cast_to = Vector3( 0, 2, 100 )
+collision_mask = 15
+script = ExtResource( 4 )
+
+[node name="Reticle" type="Position3D" parent="Player/Pivot/RayCast"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Player/Pivot/RayCast/Reticle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
+layers = 31
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Target_container" type="Spatial" parent="." groups=["target"]]
+
+[node name="Target" parent="Target_container" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1558, 28.83, -26.6491 )
+
+[node name="NPC" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.7214, 0 )
