@@ -4894,7 +4894,7 @@ bones/35/name = "right_hand_thumb_1"
 bones/35/parent = 31
 bones/35/rest = Transform( -0.554881, -0.654406, -0.513673, -0.0427129, 0.639042, -0.767985, 0.830832, -0.4042, -0.382544, -0.063919, 0.0509812, -0.0128302 )
 bones/35/enabled = true
-bones/35/bound_children = [ NodePath("BoneAttachment") ]
+bones/35/bound_children = [  ]
 bones/36/name = "right_hand_thumb_2"
 bones/36/parent = 35
 bones/36/rest = Transform( 0.660497, -0.565645, -0.49375, 0.514051, -0.138638, 0.846481, -0.54726, -0.812912, 0.199201, 9.52321e-08, 0.105868, 2.92955e-08 )
@@ -4947,7 +4947,7 @@ skin = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Root/Skeleton"]
-transform = Transform( -0.811502, 0.133079, 0.569004, 0.440192, -0.501191, 0.745013, 0.384322, 0.855041, 0.348137, -0.662274, 1.33637, 0.221246 )
+transform = Transform( -0.811616, 0.133035, 0.568851, 0.440131, -0.501053, 0.745142, 0.384151, 0.855129, 0.348109, -0.662263, 1.3363, 0.221385 )
 bone_name = "right_hand_thumb_1"
 
 [node name="blasterJ" parent="Root/Skeleton/BoneAttachment" instance=ExtResource( 1 )]
