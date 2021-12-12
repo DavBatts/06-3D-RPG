@@ -73,3 +73,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1558, 28.83, -26.6491 )
 
 [node name="NPC" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.7214, 0 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
